@@ -1,0 +1,25 @@
+@mixin margin($element) {
+  #{$element} {
+    margin-right: 10px;
+  }
+  #{$element}:last-of-type {
+    margin-right: 0;
+  }
+}
+
+
+.container {
+  padding: 10px;
+
+  mat-card {
+    margin-top: 10px;
+
+    @include margin(mat-form-field);
+    @include margin(button);
+
+  }
+
+  mat-card:first-of-type {
+    margin-top: 0;
+  }
+}
