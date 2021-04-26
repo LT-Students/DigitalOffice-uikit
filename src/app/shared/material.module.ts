@@ -66,10 +66,11 @@ import { MatButtonLoadingDirective } from './directives/mat-button-loading.direc
     MatMenuModule,
     MatTooltipModule,
     MatAutocompleteModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatButtonLoadingDirective
   ],
   providers: [{ provide: MatDialogRef, useValue: {} }],
-  declarations: [MatButtonLoadingDirective],
+  declarations: [ MatButtonLoadingDirective ],
   entryComponents: [ MatProgressSpinner ],
 })
 export class MaterialModule {}

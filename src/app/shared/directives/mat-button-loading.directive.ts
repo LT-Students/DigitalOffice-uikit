@@ -37,9 +37,7 @@ export class MatButtonLoadingDirective implements OnChanges {
 		private viewContainerRef: ViewContainerRef,
 		private renderer: Renderer2
 	) {
-		this.spinnerFactory = this.componentFactoryResolver.resolveComponentFactory(
-			MatProgressSpinner
-		);
+		this.spinnerFactory = this.componentFactoryResolver.resolveComponentFactory(MatProgressSpinner);
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
