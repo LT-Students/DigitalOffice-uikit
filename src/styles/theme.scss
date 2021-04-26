@@ -1,0 +1,23 @@
+@import '~@angular/material/theming';
+@import 'base/variables';
+
+/* ======== Angular material custom themes ======== */
+$theme-primary: mat-palette($mat-deep-orange, 500);
+$theme-accent: mat-palette($mat-deep-orange, 200);
+$theme-warn: mat-palette($mat-red, 400);
+$app-theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
+
+$custom-typography: mat-typography-config(
+        $font-family: '"GillSansWGL", sans-serif',
+        $headline:      mat-typography-level(35px, 40px, 700, 'Montserrat, sans-serif'),
+        $title:         mat-typography-level(28px, 32px, 700, 'Montserrat, sans-serif'),
+        $subheading-2:  mat-typography-level(22px, 33px, 700, 'Montserrat, sans-serif'),
+        $subheading-1:  mat-typography-level(18px, 24px, 700, 'Montserrat, sans-serif'),
+        $body-2:        mat-typography-level(16px, 24px, 500, '"GillSansWGL", sans-serif'),
+        $body-1:        mat-typography-level(16px, 24px, 400, '"GillSansWGL", sans-serif'),
+        $input: mat-typography-level(16px, 1.5, 400, '"GillSansWGL", sans-serif'),
+        $button: mat-typography-level(16px, 1.5, 400, '"GillSansWGL", sans-serif'),
+);
+
+@include angular-material-theme($app-theme);
+@include mat-core($custom-typography);

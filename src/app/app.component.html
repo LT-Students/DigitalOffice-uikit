@@ -2,17 +2,19 @@
     <!-- Form fields -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Form Fields</mat-card-title>
+            <mat-card-title class='mat-h1'>Form Fields</mat-card-title>
         </mat-card-header>
-        <mat-form-field appearance="fill" floatLabel='always'>
+        <mat-form-field [appearance]='formFieldAppearance' floatLabel='always'>
             <mat-label>Input</mat-label>
             <input matInput>
         </mat-form-field>
-        <mat-form-field appearance="fill" floatLabel='always'>
+        <mat-form-field [appearance]='formFieldAppearance' floatLabel='always'>
             <mat-label>Select</mat-label>
-            <mat-select>
+            <mat-select disableOptionCentering>
                 <mat-option value="one">First option</mat-option>
                 <mat-option value="two">Second option</mat-option>
+                <mat-option value="three">Second option</mat-option>
+                <mat-option value="four">Second option</mat-option>
             </mat-select>
         </mat-form-field>
     </mat-card>
@@ -20,45 +22,60 @@
     <!-- Buttons -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Buttons</mat-card-title>
+            <mat-card-title class='mat-h1'>Buttons</mat-card-title>
         </mat-card-header>
-        <button mat-flat-button>Basic</button>
+        <button mat-flat-button><mat-icon><span class="material-icons">attach_file</span></mat-icon>Basic</button>
+        <button mat-flat-button>Basic<mat-icon><span class="material-icons">attach_file</span></mat-icon></button>
         <button mat-flat-button>asd</button>
-        <button mat-flat-button [loading]="true" color="primary">Primary</button>
-        <button mat-flat-button color="accent">Accent</button>
+        <button mat-flat-button color="primary" [loading]="true">Primary</button>
+        <button mat-flat-button color="primary">Primary</button>
+        <button mat-flat-button color="accent"><mat-icon><span class="material-icons">add</span></mat-icon>Accent</button>
         <button mat-flat-button color="warn">Warn</button>
         <button mat-flat-button disabled>Disabled</button>
     </mat-card>
 
+    <!-- Radio/Checkbox -->
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title class='mat-h1'>Radio/Checkbox</mat-card-title>
+        </mat-card-header>
+        <label id="example-radio-group-label">Pick your favorite season</label>
+        <section>
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group">
+                <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                    {{ season }}
+                </mat-radio-button>
+            </mat-radio-group>
+        </section>
+        <section>
+            <mat-checkbox class="example-margin"></mat-checkbox>
+        </section>
+    </mat-card>
 
     <!-- Input -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Form Fields</mat-card-title>
+            <mat-card-title class='mat-h1'>Input</mat-card-title>
         </mat-card-header>
-        <mat-form-field appearance="fill" floatLabel='always'>
-            <mat-label>Input</mat-label>
-            <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="fill" floatLabel='always'>
-            <mat-label>Select</mat-label>
-            <mat-select>
-                <mat-option value="one">First option</mat-option>
-                <mat-option value="two">Second option</mat-option>
-            </mat-select>
+        <mat-form-field [appearance]="formFieldAppearance">
+            <input class='input_default' matInput placeholder='placeholder'>
         </mat-form-field>
     </mat-card>
 
     <!-- Selects -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Selects</mat-card-title>
+            <mat-card-title class='mat-h1'>Selects</mat-card-title>
         </mat-card-header>
-        <mat-form-field appearance="fill" floatLabel='always'>
+        <mat-form-field [appearance]='formFieldAppearance' floatLabel='always'>
             <mat-label>Select</mat-label>
-            <mat-select>
+            <mat-select disableOptionCentering>
                 <mat-option value="one">First option</mat-option>
                 <mat-option value="two">Second option</mat-option>
+                <mat-option value="three">Second option</mat-option>
+                <mat-option value="four">Second option</mat-option>
             </mat-select>
         </mat-form-field>
     </mat-card>
@@ -66,14 +83,60 @@
     <!-- Context menu -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Context menu</mat-card-title>
+            <mat-card-title class='mat-h1'>Context menu</mat-card-title>
         </mat-card-header>
-        <mat-form-field appearance="fill" floatLabel='always'>
-            <mat-label>Select</mat-label>
-            <mat-select>
-                <mat-option value="one">First option</mat-option>
-                <mat-option value="two">Second option</mat-option>
-            </mat-select>
-        </mat-form-field>
+        <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_horiz</mat-icon></button>
+        <mat-menu #menu="matMenu" xPosition="before">
+            <ng-template matMenuContent>
+            <button mat-menu-item>
+                <mat-icon>edit_note</mat-icon>
+                <span>Редактировать</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>Удалить</span>
+            </button>
+            </ng-template>
+        </mat-menu>
+    </mat-card>
+
+    <!-- Tooltip -->
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title class='mat-h1'>Tooltip</mat-card-title>
+        </mat-card-header>
+        <button mat-raised-button
+                matTooltip="Info about the action"
+                aria-label="Button that displays a tooltip when focused or hovered over">
+            Action
+        </button>
+    </mat-card>
+
+    <!-- Headers -->
+    <mat-card>
+        <mat-card-header>
+            <mat-card-subtitle>Headers</mat-card-subtitle>
+        </mat-card-header>
+        <section>
+            <h1 class='mat-h1'>H1 Какой классный у нас проект 35pt bold</h1>
+            <h2 class='mat-h2'>H2 Какой классный у нас проект 28pt bold</h2>
+            <h3 class='mat-h3'>H3 Какой классный у нас проект 22pt bold</h3>
+            <h4 class='mat-h4'>H4 Какой классный у нас проект 18pt bold</h4>
+        </section>
+    </mat-card>
+
+    <!-- Chips -->
+    <mat-card>
+        <mat-card-header>
+            <mat-card-subtitle>Badges</mat-card-subtitle>
+        </mat-card-header>
+        <section>
+            <mat-chip-list aria-label="Fish selection">
+                <mat-chip class='bg-color_blue'>Лидер направления</mat-chip>
+                <mat-chip>Two fish</mat-chip>
+                <mat-chip color="primary" selected>Primary fish</mat-chip>
+                <mat-chip color="accent" selected>Accent fish</mat-chip>
+            </mat-chip-list>
+        </section>
     </mat-card>
 </div>

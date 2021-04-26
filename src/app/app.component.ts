@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'do-uikit';
+
+  formFieldAppearance = 'outline';
+
+  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
 }

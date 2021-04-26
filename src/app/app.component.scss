@@ -17,6 +17,16 @@
     @include margin(mat-form-field);
     @include margin(button);
 
+    .example-radio-group {
+      display: flex;
+      flex-direction: column;
+      margin: 15px 0;
+    }
+
+    .example-radio-button {
+      margin: 5px;
+    }
+
   }
 
   mat-card:first-of-type {
