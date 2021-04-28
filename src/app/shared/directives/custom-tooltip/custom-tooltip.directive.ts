@@ -18,8 +18,7 @@ import { CustomTooltipComponent } from '../../components/custom-tooltip/custom-t
   selector: '[appCustomTooltip]',
 })
 export class CustomTooltipDirective implements OnInit {
-  @Input() showTooltip = true;
-  @Input() tooltipText = 'Добавь сюда своё сообщение через атрибут tooltipText';
+  @Input() appCustomTooltip: string;
 
   private _overlayRef: OverlayRef;
 
@@ -31,19 +30,21 @@ export class CustomTooltipDirective implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.showTooltip) {
-      return;
-    }
-
     const positionStrategy = this._overlayPositionBuilder
       .flexibleConnectedTo(this._elementRef)
       .withPositions([
         {
           originX: 'end',
           originY: 'top',
-          overlayX: 'center',
+          overlayX: 'end',
           overlayY: 'bottom',
         },
+        {
+          originX: 'end',
+          originY: 'top',
+          overlayX: 'start',
+          overlayY: 'bottom',
+        }
       ]);
 
     this._overlayRef = this._overlay.create({positionStrategy});
@@ -51,18 +52,15 @@ export class CustomTooltipDirective implements OnInit {
 
   @HostListener('mouseenter')
   show() {
-    if (this._overlayRef && !this._overlayRef.hasAttached()) {
+    if (this._overlayRef && !this._overlayRef.hasAttached() && this.appCustomTooltip) {
       const tooltipRef: ComponentRef<CustomTooltipComponent> = this._overlayRef.attach(
         new ComponentPortal(CustomTooltipComponent),
       );
-      if (this.tooltipText) {
-        tooltipRef.instance.text = this.tooltipText;
-      }
+      tooltipRef.instance.text = this.appCustomTooltip;
     }
   }
 
   @HostListener('mouseleave')
-  @HostListener('wheel')
   hide() {
     this.closeToolTip();
   }
