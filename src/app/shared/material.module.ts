@@ -21,6 +21,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material';
 import { MatButtonLoadingDirective } from './directives/mat-button-loading.directive';
+import { CustomTooltipDirective } from './directives/custom-tooltip/custom-tooltip.directive';
+import { CustomTooltipComponent } from './components/custom-tooltip/custom-tooltip/custom-tooltip.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   imports: [
@@ -45,6 +48,7 @@ import { MatButtonLoadingDirective } from './directives/mat-button-loading.direc
     MatTooltipModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
+    OverlayModule
   ],
   exports: [
     MatButtonModule,
@@ -67,10 +71,12 @@ import { MatButtonLoadingDirective } from './directives/mat-button-loading.direc
     MatTooltipModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
-    MatButtonLoadingDirective
+    MatButtonLoadingDirective,
+    CustomTooltipDirective,
+    CustomTooltipComponent
   ],
   providers: [{ provide: MatDialogRef, useValue: {} }],
-  declarations: [ MatButtonLoadingDirective ],
-  entryComponents: [ MatProgressSpinner ],
+  declarations: [ MatButtonLoadingDirective, CustomTooltipDirective, CustomTooltipComponent ],
+  entryComponents: [ MatProgressSpinner, CustomTooltipComponent ],
 })
 export class MaterialModule {}

@@ -34,13 +34,13 @@ export class CustomTooltipDirective implements OnInit {
       .flexibleConnectedTo(this._elementRef)
       .withPositions([
         {
-          originX: 'end',
+          originX: 'center',
           originY: 'top',
           overlayX: 'end',
           overlayY: 'bottom',
         },
         {
-          originX: 'end',
+          originX: 'center',
           originY: 'top',
           overlayX: 'start',
           overlayY: 'bottom',
@@ -57,13 +57,14 @@ export class CustomTooltipDirective implements OnInit {
         new ComponentPortal(CustomTooltipComponent),
       );
       tooltipRef.instance.text = this.appCustomTooltip;
+      console.log(this._overlayPositionBuilder);
     }
   }
 
-  @HostListener('mouseleave')
-  hide() {
-    this.closeToolTip();
-  }
+  // @HostListener('mouseleave')
+  // hide() {
+  //   this.closeToolTip();
+  // }
 
   private closeToolTip() {
     if (this._overlayRef) {
