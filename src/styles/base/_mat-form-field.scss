@@ -1,0 +1,58 @@
+@import 'variables';
+
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float {
+  /* Custom label */
+  .mat-form-field__label {
+    position: absolute;
+    top: -20px;
+  }
+
+  /* Hover state background setter */
+  &:hover {
+    .mat-form-field-outline {
+      &-start, &-gap, &-end {
+        background-color: map-get($colors, 'light_3');
+      }
+    }
+  }
+
+  &.mat-focused, &.mat-form-field-invalid {
+    .mat-form-field-outline {
+      &-start, &-gap, &-end {
+        border-width: 2px;
+      }
+    }
+  }
+
+  /* Default state of form field */
+  .mat-form-field-outline {
+    &-start, &-gap, &-end {
+      background-color: map-get($colors, 'bg');
+      border-width: 0;
+    }
+
+    &-gap {
+      border-top-color: unset !important;
+    }
+  }
+
+  /* Behaviour that helps to avoid separation in form label */
+  .mat-form-field-infix {
+    border-top: unset;
+  }
+}
+
+/* Focus state outline */
+.mat-form-field-appearance-outline.mat-focused {
+  .mat-form-field-outline-thick {
+    color: map-get($colors, 'disabled') !important;
+  }
+}
+
+/* Invalid state outline */
+.mat-form-field-appearance-outline.mat-form-field-invalid {
+  .mat-form-field-outline-thick {
+    color: map-get($colors, 'alert') !important;
+  }
+}
+

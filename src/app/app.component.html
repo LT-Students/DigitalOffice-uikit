@@ -4,12 +4,12 @@
         <mat-card-header>
             <mat-card-title class='mat-h1'>Form Fields</mat-card-title>
         </mat-card-header>
-        <mat-form-field [appearance]='formFieldAppearance' floatLabel='always'>
-            <mat-label>Input</mat-label>
-            <input matInput>
+        <mat-form-field class='do__mat-form-field_default' [appearance]='matFormFieldDefaultOptions.appearance' floatLabel='always'>
+            <label class='mat-form-field__label'>Input</label>
+            <input matInput required>
         </mat-form-field>
-        <mat-form-field [appearance]='formFieldAppearance' floatLabel='always'>
-            <mat-label>Select</mat-label>
+        <mat-form-field class='do__mat-form-field_default' [appearance]='matFormFieldDefaultOptions.appearance' floatLabel='always'>
+            <label class='mat-form-field__label'>Select</label>
             <mat-select disableOptionCentering>
                 <mat-option value="one">First option</mat-option>
                 <mat-option value="two">Second option</mat-option>
@@ -59,8 +59,12 @@
         <mat-card-header>
             <mat-card-title class='mat-h1'>Input</mat-card-title>
         </mat-card-header>
-        <mat-form-field [appearance]="formFieldAppearance">
+        <mat-form-field [appearance]="matFormFieldDefaultOptions.appearance"  floatLabel='always'>
             <input class='input_default' matInput placeholder='placeholder'>
+        </mat-form-field>
+        <mat-form-field [appearance]="matFormFieldDefaultOptions.appearance"  floatLabel='always'>
+            <input [formControl]='email' placeholder='input with error message' matInput required>
+            <mat-error>{{ getErrorMessage() }}</mat-error>
         </mat-form-field>
     </mat-card>
 
@@ -69,8 +73,8 @@
         <mat-card-header>
             <mat-card-title class='mat-h1'>Selects</mat-card-title>
         </mat-card-header>
-        <mat-form-field [appearance]='formFieldAppearance' floatLabel='always'>
-            <mat-label>Select</mat-label>
+        <mat-form-field [appearance]='matFormFieldDefaultOptions.appearance' floatLabel='always'>
+            <label class='mat-form-field__label' matTooltip="Info about the action" matTooltipPosition='above'>Select</label>
             <mat-select disableOptionCentering>
                 <mat-option value="one">First option</mat-option>
                 <mat-option value="two">Second option</mat-option>
