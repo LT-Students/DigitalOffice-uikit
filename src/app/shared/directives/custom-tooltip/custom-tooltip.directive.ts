@@ -9,7 +9,7 @@ import {
 import {
   Overlay,
   OverlayPositionBuilder,
-  OverlayRef,
+  OverlayRef, RepositionScrollStrategy,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { CustomTooltipComponent } from '../../components/custom-tooltip/custom-tooltip/custom-tooltip.component';
@@ -44,10 +44,23 @@ export class CustomTooltipDirective implements OnInit {
           originY: 'top',
           overlayX: 'start',
           overlayY: 'bottom',
+        },
+        {
+          originX: 'center',
+          originY: 'bottom',
+          overlayX: 'end',
+          overlayY: 'top',
+        },
+        {
+          originX: 'center',
+          originY: 'bottom',
+          overlayX: 'start',
+          overlayY: 'top',
         }
       ]);
+    const scrollStrategy = this._overlay.scrollStrategies.reposition({scrollThrottle: 10});
 
-    this._overlayRef = this._overlay.create({positionStrategy});
+    this._overlayRef = this._overlay.create({positionStrategy, scrollStrategy});
   }
 
   @HostListener('mouseenter')
@@ -57,8 +70,12 @@ export class CustomTooltipDirective implements OnInit {
         new ComponentPortal(CustomTooltipComponent),
       );
       tooltipRef.instance.text = this.appCustomTooltip;
-      console.log(this._overlayPositionBuilder);
     }
+  }
+
+  @HostListener('mouseleave')
+  foo() {
+    console.log(this._overlayRef.getConfig().positionStrategy);
   }
 
   // @HostListener('mouseleave')
