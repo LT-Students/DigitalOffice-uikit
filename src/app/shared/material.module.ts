@@ -21,6 +21,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material';
 import { MatButtonLoadingDirective } from './directives/mat-button-loading.directive';
+import { TimeInputComponent } from './components/time-input/time-input.component';
 
 @NgModule({
   imports: [
@@ -46,31 +47,32 @@ import { MatButtonLoadingDirective } from './directives/mat-button-loading.direc
     MatAutocompleteModule,
     MatProgressSpinnerModule,
   ],
-  exports: [
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatChipsModule,
-    MatCardModule,
-    MatDialogModule,
-    MatTabsModule,
-    MatCheckboxModule,
-    MatNativeDateModule,
-    MatSnackBarModule,
-    MatMenuModule,
-    MatTooltipModule,
-    MatAutocompleteModule,
-    MatProgressSpinnerModule,
-    MatButtonLoadingDirective
-  ],
+    exports: [
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatGridListModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatRadioModule,
+        MatDatepickerModule,
+        MatChipsModule,
+        MatCardModule,
+        MatDialogModule,
+        MatTabsModule,
+        MatCheckboxModule,
+        MatNativeDateModule,
+        MatSnackBarModule,
+        MatMenuModule,
+        MatTooltipModule,
+        MatAutocompleteModule,
+        MatProgressSpinnerModule,
+        MatButtonLoadingDirective,
+        TimeInputComponent
+    ],
   providers: [{ provide: MatDialogRef, useValue: {} }],
-  declarations: [ MatButtonLoadingDirective ],
+  declarations: [ MatButtonLoadingDirective, TimeInputComponent ],
   entryComponents: [ MatProgressSpinner ],
 })
 export class MaterialModule {}
