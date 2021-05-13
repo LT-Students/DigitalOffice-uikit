@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatFormFieldDefaultOptions } from '@angular/material/form-field';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,10 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(private fb: FormBuilder) {
+    this.form = fb.group({time: { hours: '', minutes: ''}});
+  }
   title = 'do-uikit';
 
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -16,11 +20,17 @@ export class AppComponent {
 
   seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
 
+  form: FormGroup;
+
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  handleSubmit() {
+    console.log(this.form.value);
   }
 }
