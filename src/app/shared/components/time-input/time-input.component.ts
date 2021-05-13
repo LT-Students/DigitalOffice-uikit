@@ -1,5 +1,5 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgControl } from '@angular/forms';
+import { Component, HostBinding, Input, OnDestroy, OnInit, Optional, Self } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, FormGroup, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material';
 import { Subject } from 'rxjs';
 
@@ -14,13 +14,19 @@ interface Time {
   styleUrls: ['./time-input.component.scss'],
   providers: [{provide: MatFormFieldControl, useExisting: TimeInputComponent}]
 })
-export class TimeInputComponent implements OnInit, MatFormFieldControl<Time> {
+export class TimeInputComponent implements OnInit, OnDestroy, MatFormFieldControl<Time>, ControlValueAccessor {
 
-  constructor(fb: FormBuilder) {
+  constructor(
+    fb: FormBuilder,
+    @Optional() @Self() public ngControl: NgControl
+  ) {
     this.parts = fb.group({
       hours: '',
       minutes: '',
     });
+    if (this.ngControl != null) {
+      this.ngControl.valueAccessor = this;
+    }
   }
 
   get empty() {
@@ -29,12 +35,16 @@ export class TimeInputComponent implements OnInit, MatFormFieldControl<Time> {
   }
 
   @Input()
-  get value(): Time {
-    return this.parts.value;
+  get value(): Time | null {
+    console.log(this.parts);
+    if (this.parts.valid) {
+      return this.parts.value;
+    }
+    return null;
   }
-
-  set value(time: Time) {
-    this.parts.setValue({ ...time });
+  set value(time: Time | null) {
+    const { hours, minutes } = time || { hours: '', minutes: ''};
+    this.parts.setValue({ hours, minutes });
     this.stateChanges.next();
   }
 
@@ -50,20 +60,50 @@ export class TimeInputComponent implements OnInit, MatFormFieldControl<Time> {
   focused = false;
   controlType = 'time-input';
   disabled = false;
-  ngControl: NgControl | null;
-
   placeholder: string;
   required: boolean;
 
   @HostBinding()
   id = `time-input-${TimeInputComponent.nextId++}`;
 
+  onChange = (_: any) => {};
+  onTouched = () => {};
+
   ngOnInit() {
+    this.parts.valueChanges.subscribe((value) => this.onChange(value));
   }
 
   onContainerClick(event: MouseEvent): void {
   }
 
   setDescribedByIds(ids: string[]): void {
+  }
+
+  writeValue(time: Time | null): void {
+    this.value = time;
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  autoFocusNext(event, input: HTMLElement): void {
+    if (event.target.value.toString().length === 2) {
+      input.focus();
+    }
+  }
+
+  autoFocusPrev(event, input: HTMLElement): void {
+    if (event.target.value.toString().length === 0) {
+      input.focus();
+    }
+  }
+
+  ngOnDestroy() {
+    this.stateChanges.complete();
   }
 }
