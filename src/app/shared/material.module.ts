@@ -21,6 +21,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material';
 import { MatButtonLoadingDirective } from './directives/mat-button-loading.directive';
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
 
 @NgModule({
   imports: [
@@ -69,8 +70,8 @@ import { MatButtonLoadingDirective } from './directives/mat-button-loading.direc
     MatProgressSpinnerModule,
     MatButtonLoadingDirective
   ],
-  providers: [{ provide: MatDialogRef, useValue: {} }],
+  providers: [],
   declarations: [ MatButtonLoadingDirective ],
-  entryComponents: [ MatProgressSpinner ],
+  entryComponents: [ MatProgressSpinner, CustomDialogComponent ],
 })
 export class MaterialModule {}

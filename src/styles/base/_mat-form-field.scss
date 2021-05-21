@@ -1,6 +1,6 @@
 @import 'variables';
 
-.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float {
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float.do__mat-form-field {
   /* Custom label */
   .mat-form-field__label {
     position: absolute;
@@ -33,6 +33,18 @@
 
     &-gap {
       border-top-color: unset !important;
+    }
+  }
+
+  &.do__mat-form-field_transparent {
+    .mat-form-field-outline {
+      &-start, &-gap, &-end {
+        background-color: map-get($colors, 'Bg / Primary');
+      }
+
+      &-gap {
+        border-top-color: unset !important;
+      }
     }
   }
 

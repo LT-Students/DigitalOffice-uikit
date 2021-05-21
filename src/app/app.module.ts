@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CustomDialogComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -16,7 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 		MaterialModule,
 		ReactiveFormsModule
 	],
-  providers: [],
+  providers: [CustomDialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

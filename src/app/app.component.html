@@ -59,12 +59,38 @@
         <mat-card-header>
             <mat-card-title class='mat-h1'>Input</mat-card-title>
         </mat-card-header>
-        <mat-form-field [appearance]="matFormFieldDefaultOptions.appearance"  floatLabel='always'>
+        <mat-form-field class='do__mat-form-field'[appearance]="matFormFieldDefaultOptions.appearance"  floatLabel='always'>
             <input class='input_default' matInput placeholder='placeholder'>
         </mat-form-field>
-        <mat-form-field [appearance]="matFormFieldDefaultOptions.appearance"  floatLabel='always'>
+        <mat-form-field class='do__mat-form-field do__mat-form-field_transparent' [appearance]="matFormFieldDefaultOptions.appearance" floatLabel='always'>
             <input [formControl]='email' placeholder='input with error message' matInput required>
             <mat-error>{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class='do__mat-form-field'[appearance]="matFormFieldDefaultOptions.appearance"  floatLabel='always'>
+            <input matInput [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <mat-form-field class='do__mat-form-field'[appearance]="matFormFieldDefaultOptions.appearance"  floatLabel='always'>
+            <input matInput>
+            <span matPrefix><mat-icon>attach_file</mat-icon></span>
+        </mat-form-field>
+        <mat-form-field class='do__mat-form-field'[appearance]="matFormFieldDefaultOptions.appearance"  floatLabel='always'>
+            <input matInput>
+            <span matPrefix><mat-icon>search</mat-icon></span>
+        </mat-form-field>
+        <mat-form-field class='do__mat-form-field' [appearance]="matFormFieldDefaultOptions.appearance"  floatLabel='always'>
+            <input matInput>
+            <span matPrefix><mat-icon>search</mat-icon></span>
+        </mat-form-field>
+        <mat-form-field class='do__mat-form-field'[appearance]="matFormFieldDefaultOptions.appearance"  floatLabel='always'>
+            <input matInput>
+            <span matPrefix>@</span>
+        </mat-form-field>
+        <mat-form-field class='do__mat-form-field do__mat-form-field_transparent' [appearance]="matFormFieldDefaultOptions.appearance"  floatLabel='always'>
+            <input matInput>
+            <span matPrefix>@</span>
         </mat-form-field>
     </mat-card>
 
@@ -73,7 +99,7 @@
         <mat-card-header>
             <mat-card-title class='mat-h1'>Selects</mat-card-title>
         </mat-card-header>
-        <mat-form-field [appearance]='matFormFieldDefaultOptions.appearance' floatLabel='always'>
+        <mat-form-field class='do__mat-form-field' [appearance]='matFormFieldDefaultOptions.appearance' floatLabel='always'>
             <label class='mat-form-field__label' matTooltip="Info about the action" matTooltipPosition='above'>Select</label>
             <mat-select disableOptionCentering>
                 <mat-option value="one">First option</mat-option>
@@ -142,5 +168,13 @@
                 <mat-chip color="accent" selected>Accent fish</mat-chip>
             </mat-chip-list>
         </section>
+    </mat-card>
+
+    <!-- Dialog -->
+    <mat-card>
+        <mat-card-header>
+            <mat-card-subtitle>Dialog</mat-card-subtitle>
+        </mat-card-header>
+        <button mat-flat-button (click)='openDialog()'>asd</button>
     </mat-card>
 </div>
